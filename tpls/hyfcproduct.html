@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- <%row tn="cn_seo" fd="__typeid" value="246" item="seo"%>
+<title><%$seo.title%></title> -->
+<meta name="Keywords" content="<%$seo.keywords%>"/>
+<meta name="Description" content="<%$seo.description%>" />
+<link href="style/main.css" rel="stylesheet" type="text/css" />
+<link href="style/index.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="script/jquery-1.7.1.min.js"></script>
+<script language="javascript" type="text/javascript" src="script/easing.js"></script>
+<script language="javascript" type="text/javascript" src="script/js.js"></script>
+<script language="javascript" type="text/javascript" src="script/fun.js"></script>
+<script language="javascript" type="text/javascript" src="script/form.js"></script>
+<script language="javascript" type="text/javascript" src="script/jquery.SuperSlide.2.1.1.js"></script>
+<script language="javascript" type="text/javascript" src="js/ims.pager.js"></script>
+<!--[if lte IE 6]>
+<script src="script/png.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('div, ul, img, li, input , a');
+    </script>
+<![endif]--> 
+</head>
+
+<body>
+
+<div class="headDiv">
+<%include ./?index_head.html%>
+</div>
+
+<script type="text/javascript">
+$(function(){
+	$(".nav").find("a").eq(4).addClass("aNow");
+	$(".sNav_04").find("a").eq(1).addClass("aNow");
+	$(".sideNav .list").find("a").eq(1).addClass("aNow");
+})
+</script>
+
+<div class="wal">
+<!--wal-->
+<%row tn="cn_users" fd="id" value="$u"%>
+<div class="fl sideNav">
+  <div class="title">会员风采</div>
+  <div class="list">
+     <ul>
+        <li><a href="{WEB_APP}?hyfcintroduction/u/<%$info.id%>.html">会员介绍</a></li>
+        <li><a href="{WEB_APP}?hyfcproduct/u/<%$info.id%>.html">会员产品</a></li>
+     </ul>
+  </div>
+  <div class="h10"></div>
+  <div class="sideBtn"><a href="">入会指南</a></div>
+</div>
+
+
+<div class="fr w725">
+     <div class="pageNow"><a href="{WEB_APP}?app.html">首页</a> > <a href="{WEB_APP}?member.html">会员风采</a> > <span>会员产品</span></div>
+     <!--内容-->
+     <div class="memberProduct">
+        <ul>
+        <!-- 暂时还没有带SESSION的id -->
+		  <%loop tn="cn_members_product"  row="8"  where="user_key=$u"  order="__handsort desc,id desc" page="page"%>
+          <li>
+             <div class="imgDiv"><a href="{WEB_APP}?hyfcproductshow/<%$list.id%>.html">
+
+			 <img width="120" height="120" src="<%$list.img_path%>"/>
+			 
+             <div class="name"><a href="{WEB_APP}?hyfcproductshow/<%$list.id%>.html"><%$list.title%></a></div>
+          </li>
+		  <%/loop%>
+
+		          
+        </ul>
+        <span class="clear_f"></span>
+     </div>
+     <div id="page_style"></div>
+	 <div style="display:none;" class="ims_pager" mod="#page_style:3" ><%$pagejson%></div>
+     <!--内容End-->
+</div>
+<div class="h50"></div>
+<!--walEnd-->
+</div>
+
+<%include ./?index_foot.html%>
+</body>
+</html>
